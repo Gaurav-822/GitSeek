@@ -2,6 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 import requests
 import json
+import os
 
 # Configuring Flask Application
 app = Flask(__name__)
@@ -10,7 +11,8 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         name = request.form.get("username")
-        url = f'https://api.github.com/users/{name}'
+        github_api_url = os.environ["GITHUB_API_URL"]
+        url = f'{github_api_url}/users/{name}'
         response = requests.get(url)
 
         # Check the status code

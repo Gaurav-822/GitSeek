@@ -13,9 +13,8 @@ def index():
         name = request.form.get("username")
         github_api_url = os.environ["GITHUB_API_URL"]
         github_access_token = os.environ["GITHUB_ACCESS_TOKEN"]
-        
-        url = f'{github_api_url}/users/{name}, headers={"Authorization": f"Bearer {github_access_token}"}'
-        response = requests.get(url)
+
+        response = requests.get(f"{github_api_url}/users/{name}", headers={"Authorization": f"Bearer {github_access_token}"})
 
         # Check the status code
         if response.status_code == 200:

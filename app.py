@@ -12,7 +12,9 @@ def index():
     if request.method == "POST":
         name = request.form.get("username")
         github_api_url = os.environ["GITHUB_API_URL"]
-        url = f'{github_api_url}/users/{name}'
+        github_access_token = os.environ["GITHUB_ACCESS_TOKEN"]
+        
+        url = f'{github_api_url}/users/{name}, headers={"Authorization": f"Bearer {github_access_token}"}'
         response = requests.get(url)
 
         # Check the status code

@@ -26,4 +26,4 @@ def index():
         else:
             return f'Request failed with status code: {response.status_code}'
 
-    return render_template("index.html")
+    return render_template("index.html") 
